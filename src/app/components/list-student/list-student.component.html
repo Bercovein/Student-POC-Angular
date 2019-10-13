@@ -1,0 +1,25 @@
+<div class="container text-white bg-dark">
+    <h1>Lista de Estudiantes</h1>
+
+    <table class="table text-white">
+        <thead>
+            <tr>
+                <th class="col-2">Id</th>
+                <th class="col-2">FirstName</th>
+                <th class="col-2">LastName</th>
+                <th class="col-2">Dni</th>
+                <th class="col-2">Email</th>
+                <th class="col-2">Address</th>
+            </tr>
+            <tr *ngFor="let s of students">
+                <td class="col-2">{{s.studentId}}</td>
+                <td class="col-2">{{s.lastName}}</td>
+                <td class="col-2">{{s.firstName}}</td>
+                <td class="col-2">{{s.dni}}</td>
+                <td class="col-2">{{s.email}}</td>
+                <td class="col-2">{{s.address}}</td>
+            </tr>
+        </thead>
+    </table>
+</div>
+
