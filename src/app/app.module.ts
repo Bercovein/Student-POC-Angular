@@ -10,6 +10,7 @@ import { StudentsService } from './services/students.service';
 import { AddStudentComponent } from './components/add-student/add-student.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ListStudentComponent } from './components/list-student/list-student.component';
+import { EditStudentComponent } from './components/edit-student/edit-student.component';
 
 @NgModule({
   imports:      [ BrowserModule, 
@@ -20,7 +21,7 @@ import { ListStudentComponent } from './components/list-student/list-student.com
                   HelloComponent, 
                   AddStudentComponent,
                   NavbarComponent, 
-                  ListStudentComponent ],
+                  ListStudentComponent, EditStudentComponent ],
   bootstrap:    [ AppComponent ],
   providers: [StudentsService]
 })

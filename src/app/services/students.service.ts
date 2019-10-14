@@ -31,7 +31,7 @@ export class StudentsService {
     return this.http.post(this.path,student,this.httpOptions).toPromise();
   }
 
-  update(student : Student) : Promise<any>{
-    return this.http.patch(this.path + student.studentId,student,this.httpOptions).toPromise();
+  update(id:number, student : Student) : Promise<any>{
+    return this.http.patch(this.path + id,student,this.httpOptions).toPromise();
   }
 }
