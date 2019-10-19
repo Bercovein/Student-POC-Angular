@@ -14,12 +14,7 @@ export class EditStudentComponent implements OnInit {
   successPop: String = 'Modificado Correctamente';
   errorPop: String = 'Ha habido un problema..';
 
-  studentId : number;
-  dni : number;
-  firstName : string;
-  lastName : string;
-  email : string;
-  address : string;
+  private student: Student = new Student();
 
   constructor(private studentService : StudentsService) { }
 
@@ -27,7 +22,6 @@ export class EditStudentComponent implements OnInit {
   }
 
   update(){
-    let student = new Student(this.dni,this.firstName,this.lastName,this.email,this.address);
-    this.studentService.update(this.studentId,student);
+    this.studentService.update(this.student.studentId,this.student);
   }
 }

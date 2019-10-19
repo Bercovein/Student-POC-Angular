@@ -11,24 +11,20 @@ import Swal from'sweetalert2';
 })
 export class AddStudentComponent implements OnInit {
 
-  successPop : string = 'Agregado con éxito!'; 
+
+  successPop :  string = 'Agregado con éxito!'; 
   errorPop : string = 'Ha habido un problema..';
 
-  dni : number;
-  firstName : string;
-  lastName : string;
-  email : string;
-  address : string;
+  private student : Student = new Student();
 
   constructor(private studentService : StudentsService) { }
 
   ngOnInit() {
   }
 
-  add(){
-    let student = new Student(this.dni,this.firstName,this.lastName, this.email, this.address); 
-    console.log(student);
-    this.studentService.add(student)
+  add(){ 
+    console.log(this.student);
+    this.studentService.add(this.student)
       .then(response => {
         Swal.fire({
           title : this.successPop,
@@ -43,5 +39,4 @@ export class AddStudentComponent implements OnInit {
         })
       });
   }
-
 }

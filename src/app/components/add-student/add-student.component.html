@@ -3,19 +3,19 @@
   <div class="col">
       <div class="row">
         <div class="form-group m-1 col-2">
-          <input class="form-control " [(ngModel)]="dni" type="text" id="dni" placeholder="Dni">
+          <input class="form-control " [(ngModel)]="student.studentId" type="text" id="dni" placeholder="Dni">
         </div>
         <div class="form-group m-1 col-2">
-          <input class="form-control" [(ngModel)]="firstName" type="text" id="firstName" placeholder="Nombre">
+          <input class="form-control" [(ngModel)]="student.firstName" type="text" id="firstName" placeholder="Nombre">
         </div>
         <div class="form-group m-1 col-2">
-          <input class="form-control" [(ngModel)]="lastName" type="text" id="lastName" placeholder="Apellido">
+          <input class="form-control" [(ngModel)]="student.lastName" type="text" id="lastName" placeholder="Apellido">
         </div>
         <div class="form-group m-1 col-2">
-          <input class="form-control" [(ngModel)]="email" type="text" id="email" placeholder="Email">
+          <input class="form-control" [(ngModel)]="student.email" type="text" id="email" placeholder="Email">
         </div>
         <div class="form-group m-1 col-2">
-          <input class="form-control" [(ngModel)]="address" type="text" id="address" placeholder="Dirección">
+          <input class="form-control" [(ngModel)]="student.address" type="text" id="address" placeholder="Dirección">
         </div>
         <div class="form-group m-1">
           <button class="btn btn-success" (click)="add()">Add</button>

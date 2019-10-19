@@ -3,7 +3,6 @@ import { Student } from 'src/app/models/student';
 import { StudentsService } from 'src/app/services/students.service';
 
 import Swal from'sweetalert2';
-import { Button } from 'protractor';
 
 @Component({
   selector: 'app-list-student',
@@ -48,5 +47,11 @@ export class ListStudentComponent implements OnInit {
           text: error,
           type: 'warning'
       })});
+  }
+  edit(){
+    Swal.fire({
+      title: "Editar",
+      type: "success"
+    });
   }
 }
