@@ -1,0 +1,43 @@
+URL BASE: https://utn2019-avanzada2-tp8.herokuapp.com/
+
+GET api/students *
+GET api/students/<id> 
+
+POST api/students *
+{
+   "dni": "000000",
+   "firstName": "string",
+   "lastName": "string",
+   "email": "string",
+   "address": "string"
+}
+
+PATCH api/students/<id> 
+{
+   "dni": "000000",
+   "firstName": "string",
+   "lastName": "string",
+   "email": "string",
+   "address": "string"
+}
+
+get api/careers
+{
+	careerId: 1 ,
+
+	name : String,
+	description: String
+}
+
+student tiene career id
+
+POST /LOGIN
+POST /SIGN-UP
+
+{
+  email: mail@domain.com,
+  password: string
+}
+
+en los validators, cuando hacemos submit hacemos un [disabled]="!studentForm.valid"
+que si el form esta invalido, el boton no esta habilitado

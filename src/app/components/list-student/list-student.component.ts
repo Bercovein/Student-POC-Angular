@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from 'src/app/models/student';
 import { StudentsService } from 'src/app/services/students.service';
+import { Career } from 'src/app/models/career';
+
 
 import Swal from'sweetalert2';
 
@@ -11,15 +13,26 @@ import Swal from'sweetalert2';
 })
 export class ListStudentComponent implements OnInit {
 
-  
-
+  careers = new Array<Career>();
   students = new Array<Student>();
 
   constructor(private studentService: StudentsService) { }
 
   ngOnInit() {
-    this.studentService.getAll()
+    /*this.studentService.getAll()
     .then(response => {this.students = response})
+    .catch(error => {console.log(error)});*/
+    this.getAll();
+  }
+
+  async getAll(){
+    await this.studentService.getCareers()
+        .then(response => {this.careers = response})
+        .catch(error => {console.log(error)});
+    await this.studentService.getAll()
+    .then(response => {
+      this.students = response;
+    })
     .catch(error => {console.log(error)});
   }
 
