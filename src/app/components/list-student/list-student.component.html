@@ -21,7 +21,7 @@
                 <td class="col-2">{{s.address}}</td>
                 <td>
                     <button (click)="delete(s)" class="btn bg-danger m-1"><img style="width:1.5rem;" src="../../../assets/img/deleteIcon.png"></button>
-                    <button (click)="edit(s)" class="btn bg-warning m-1"><img style="width:1.5rem;" src="../../../assets/img/edit-icon.jpg"></button>
+                    <button [routerLink]="['/edit',s.studentId]" class="btn bg-warning m-1"><img style="width:1.5rem;" src="../../../assets/img/edit-icon.jpg"></button>
                 </td>
             </tr>
         </thead>

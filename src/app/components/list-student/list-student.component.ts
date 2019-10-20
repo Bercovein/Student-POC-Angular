@@ -11,6 +11,8 @@ import Swal from'sweetalert2';
 })
 export class ListStudentComponent implements OnInit {
 
+  
+
   students = new Array<Student>();
 
   constructor(private studentService: StudentsService) { }

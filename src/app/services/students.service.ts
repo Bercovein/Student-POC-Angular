@@ -23,8 +23,8 @@ export class StudentsService {
     return this.http.get(this.path).toPromise();
   }
 
-  getById(id : number) : Promise<any>{
-    return this.http.get(this.path + '{'+ id + '}').toPromise();
+  getById(id : string) : Promise<any>{
+    return this.http.get(this.path + id).toPromise();
   }
 
   add(student : Student) : Promise<any>{
