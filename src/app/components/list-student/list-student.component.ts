@@ -63,6 +63,7 @@ export class ListStudentComponent implements OnInit {
           type: 'warning'
       })});
   }
+  
   edit(){
     Swal.fire({
       title: "Editar",
