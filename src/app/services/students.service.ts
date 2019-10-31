@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Student } from '../models/student';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class StudentsService {
+export class StudentsService extends Observable<any>{
 
   path = 'https://utn2019-avanzada2-tp8.herokuapp.com/api/';
   pathStudents = this.path + 'students/';
@@ -19,7 +20,9 @@ export class StudentsService {
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private service :Subject<any>) {
+    super();
+  }
 
   getAll() : Promise<any>{
     return this.http.get(this.pathStudents).toPromise();

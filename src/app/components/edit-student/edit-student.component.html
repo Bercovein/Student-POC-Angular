@@ -1,75 +1,27 @@
 <div class="container bg-dark text-white p-3"> 
 
+  <H1>EDITAR ESTUDIANTE</H1>
+
     <div class="col">
-        <form class="row" [formGroup]="studentForm" (ngSubmit)="update()">
+        <div class="row">
           <div class="form-group m-1 col-2">
-              <label for="">Dni:</label>
-            <input class="form-control" formControlName="studentId" value="{{student.dni}}" type="text" id="dni" placeholder="{{student.dni}}">
+            <input class="form-control " [(ngModel)]="student.studentId" value="{{student.dni}}" type="text" id="dni" placeholder="{{student.dni}}">
           </div>
           <div class="form-group m-1 col-2">
-              <label for="">Nombre:</label>
-            <input class="form-control" formControlName="firstName" value="{{student.firstName}}" type="text" id="firstName" placeholder="{{student.firstName}}">
+            <input class="form-control" [(ngModel)]="student.firstName" value="{{student.firstName}}" type="text" id="firstName" placeholder="{{student.firstName}}">
           </div>
           <div class="form-group m-1 col-2">
-              <label for="">Apellido:</label>
-            <input class="form-control" formControlName="lastName" value="{{student.lastName}}" type="text" id="lastName" placeholder="{{student.lastName}}">
+            <input class="form-control" [(ngModel)]="student.lastName" value="{{student.lastName}}" type="text" id="lastName" placeholder="{{student.lastName}}">
           </div>
           <div class="form-group m-1 col-2">
-              <label for="">Email:</label>
-            <input class="form-control" formControlName="email" value="{{student.email}}" type="text" id="email" placeholder="{{student.email}}">
+            <input class="form-control" [(ngModel)]="student.email" value="{{student.email}}" type="text" id="email" placeholder="{{student.email}}">
           </div>
           <div class="form-group m-1 col-2">
-              <label for="">Dirección:</label>
-            <input class="form-control" formControlName="address" value="{{student.address}}" type="text" id="address" placeholder="{{student.address}}">
+            <input class="form-control" [(ngModel)]="student.address" value="{{student.address}}" type="text" id="address" placeholder="{{student.address}}">
           </div>
           <div class="form-group m-1">
-              <label for="">Modificar:</label>
-            <button class="btn btn-warning text-white form-control" type="submit">Modify</button>
+            <button class="btn btn-warning text-white" (click)="update()">Modify</button>
           </div>
-
-          <!--VALIDATIONS-->
-
-          <div *ngIf="studentId.invalid && (studentId.dirty || studentId.touched)" class="alert alert-danger">
-              <div *ngIf="studentId.errors.required">
-                Dni is required
-              </div>
-              <div *ngIf="studentId.errors.minLenght">
-                Dni not longer than 10 characters
-              </div>
-            </div>
-  
-            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
-              <div *ngIf="firstName.errors.required">
-                Firstname is required
-              </div>
-              <div *ngIf="firstName.errors.minLenght">
-                Firstname not longer than 20 characters
-              </div>
-            </div>
-  
-            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
-              <div *ngIf="lastName.errors.required">
-                lastName is required
-              </div>
-              <div *ngIf="lastName.errors.minLenght">
-                lastName not longer than 20 characters
-              </div>
-            </div>
-  
-            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-              <div *ngIf="email.errors.required">
-                email is required
-              </div>
-              <div *ngIf="email.errors.email">
-                email has to be a real email
-              </div>
-            </div>
-  
-            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
-              <div *ngIf="lastName.errors.required">
-                Career is required
-              </div>
-            </div>
-        </form>
+        </div>
     </div>
   </div>

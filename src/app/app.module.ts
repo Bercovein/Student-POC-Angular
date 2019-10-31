@@ -14,6 +14,7 @@ import { ListStudentComponent } from './components/list-student/list-student.com
 import { EditStudentComponent } from './components/edit-student/edit-student.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserService } from './services/user.service';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 
 
@@ -29,7 +30,7 @@ import { UserService } from './services/user.service';
                   HelloComponent, 
                   AddStudentComponent,
                   NavbarComponent, 
-                  ListStudentComponent, EditStudentComponent, LoginComponent ],
+                  ListStudentComponent, EditStudentComponent, LoginComponent, SignUpComponent ],
   bootstrap:    [ AppComponent ],
   providers: [StudentsService, UserService]
   
