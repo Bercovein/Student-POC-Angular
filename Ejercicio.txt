@@ -41,3 +41,41 @@ POST /SIGN-UP
 
 en los validators, cuando hacemos submit hacemos un [disabled]="!studentForm.valid"
 que si el form esta invalido, el boton no esta habilitado
+
+
+Interceptions
+
+1) agregar esto al app-module.ts
+
+providers: [{
+        provide: HTTP_INTERCEPTORS, 
+        useClass: AuthInterceptorService,
+        multi: true
+      }]
+
+2) - crear un auth-interceptor.service.ts que implemente HttpInterceptor
+ - reescribir la funcion intercept()
+
+const token = localStorage.getItem('token');
+
+    let request = req;
+
+    if(token)
+      request = req.clone({
+        setHeaders: {
+          authorization: `Bearer ${ token }`
+        }
+      })
+
+      return next.handle(request).pipe(
+        catchError((error: HttpErrorResponse)=> {
+
+          if(error.status == 401)
+            this.router.navigateByUrl('/login')
+        
+            return throwError(error)
+          
+        })
+)
+
+3) hacer un localStorage.setItem('token', this.token) en el servicio de login

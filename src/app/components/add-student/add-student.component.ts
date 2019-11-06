@@ -25,8 +25,8 @@ export class AddStudentComponent implements OnInit {
   ngOnInit() {
 
     this.studentForm = new FormGroup({
-      'studentId' : new FormControl(
-          this.student.studentId,
+      'dni' : new FormControl(
+          this.student.dni,
           [Validators.required,Validators.minLength(10)],[]),
       'firstName' : new FormControl(
         this.student.firstName, [Validators.required, Validators.minLength(20)],[]),
@@ -50,7 +50,7 @@ export class AddStudentComponent implements OnInit {
       });
   }
 
-  get studentId(){ return this.studentForm.get('studentId')}
+  get dni(){ return this.studentForm.get('dni')}
   get firstName(){ return this.studentForm.get('firstName')}
   get lastName(){ return this.studentForm.get('lastName')}
   get email(){ return this.studentForm.get('email')}
@@ -59,29 +59,26 @@ export class AddStudentComponent implements OnInit {
 
   add(){ 
 
-    this.student.studentId = this.studentId.value;
+    this.student.dni = this.dni.value;
     this.student.firstName = this.firstName.value;
     this.student.lastName = this.lastName.value;
     this.student.email = this.email.value;
     this.student.address = this.address.value;
     this.student.careerId = this.careerId.value;
     
-    console.log(this.student);
-    this.studentService.add(this.student)
-      .then(response => {
-        Swal.fire({
-          title : this.successPop,
-          type: 'success'
-        });
-      })
-      .catch(error => {
-        Swal.fire({
-          title: 'Oops!..',
-          text: error,
-          type: 'warning'
-        })
-    });
+    this.studentService.add(this.student).subscribe(
+      response => {Swal.fire({
+        title : this.successPop,
+        type: 'success'
+      });},
+      error => {Swal.fire({
+        title : this.errorPop,
+        text: error,
+        type: 'error'
+      });
+      console.log(error);  
+    }
+    );
+    
   }
-
-
 }

@@ -10,6 +10,8 @@ export class UserService {
   lin = 'login';
   sup = 'sign-up';
 
+  redirectUrl : string;
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -18,10 +20,30 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  login(user : User): Promise <any>{
-    return this.http.post(this.path + this.lin,user,this.httpOptions).toPromise();
+  //OBSERVABLE
+  login(user : User){
+    
+    const observable = this.http.post(this.path + this.lin,user,this.httpOptions);
+    
+    observable.subscribe(
+      response => {
+        let token = response['jwt'];
+        localStorage.setItem('token',token)
+      },
+      error => {
+        console.log(error);
+      }
+    )
+    return observable;
   }
 
+  logout():void{
+    localStorage.removeItem('token')
+  }
+
+  
+
+  //PROMISE
   signup(user : User): Promise <any>{
     return this.http.post(this.path + this.sup,user,this.httpOptions).toPromise();
   }

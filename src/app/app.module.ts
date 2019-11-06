@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -15,6 +15,7 @@ import { EditStudentComponent } from './components/edit-student/edit-student.com
 import { LoginComponent } from './components/login/login.component';
 import { UserService } from './services/user.service';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 
 
@@ -32,7 +33,13 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
                   NavbarComponent, 
                   ListStudentComponent, EditStudentComponent, LoginComponent, SignUpComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [StudentsService, UserService]
-  
+  providers: [StudentsService, 
+      UserService,
+      {/*AGREGAR ESTO A MODULE PARA USAR INTERCEPTORS*/
+        provide: HTTP_INTERCEPTORS, 
+        useClass: AuthInterceptorService,
+        multi: true
+      }
+    ]
 })
 export class AppModule { }

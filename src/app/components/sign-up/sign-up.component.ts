@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { CustomValidator } from 'src/app/models/custom-validator';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class SignUpComponent implements OnInit {
 
   private user: User = new User();
-  private rePassword : String;
+  private rePass : string;
   signupForm : FormGroup;
 
   constructor(private userService : UserService, private router : Router) { }
@@ -25,27 +26,44 @@ export class SignUpComponent implements OnInit {
       "password" : new FormControl(
         this.user.password,[Validators.required,CustomValidator.forbiddenName(/[$%&|<>#]/)]),
       "rePassword" : new FormControl(
-        this.rePassword, [Validators.required,CustomValidator.forbiddenName(/[$%&|<>#]/)])
+        this.rePass, [Validators.required,CustomValidator.forbiddenName(/[$%&|<>#]/)])
     });
   }
 
   get email(){return this.signupForm.get('email');}
   get password(){return this.signupForm.get('password')}
+  get rePassword(){return this.signupForm.get('rePassword')}
 
   signup(){
 
     this.user.email =this.email.value;
     this.user.password = this.password.value;
+    this.rePass= this.rePassword.value;
 
-    if(this.user.password == this.rePassword){
+    if(this.user.password == this.rePass){
       this.userService.signup(this.user)
-      .then( ()=>{
-        this.router.navigate(['/list'])}
+      .then( response => {
+        Swal.fire({
+          title: 'Bienvenido!',
+          text: 'Estamos agradecidos!',
+          type: 'success'
+        })
+        this.router.navigate(['list'])}
       )
-      .catch(error =>{ console.log(error)}
+      .catch(error =>{ 
+        Swal.fire({
+          title: 'Oops!',
+          text: 'Ha ocurrido un error inesperado',
+          type: 'error'
+        })
+        console.log('Error:' +  error)}
       );
     }else{
-      console.log('las contraseñas deben ser iguales');
+      Swal.fire({
+        title: 'Oops...',
+        text: '...las contraseñas deben ser iguales.',
+        type: 'warning'
+      })
     }
   }
 }

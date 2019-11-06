@@ -3,6 +3,7 @@ import { UserService } from './../../services/user.service';
 import { User } from 'src/app/models/user';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,10 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+
+    if(localStorage.getItem('token'))
+      this.router.navigateByUrl('/list')
+
     this.loginForm = new FormGroup({
       "email" : new FormControl(
         this.user.email,[Validators.required,Validators.email]),
@@ -33,13 +38,29 @@ export class LoginComponent implements OnInit {
     this.user.email = this.email.value;
     this.user.password = this.password.value;
 
-    this.userService.login(this.user)
-      .then(()=>{
-        this.router.navigate(['/list'])}
-      )
-      .catch(error => {
+    this.userService.login(this.user).subscribe(
+      response => {
+        if(localStorage.getItem('token')){
+          let redirect = this.userService.redirectUrl
+          ? this.router.parseUrl(this.userService.redirectUrl) : '/list';
+          
+          Swal.fire({
+            title: 'Bienvenido!',
+            text: this.user.email,
+            type: 'success'
+          })
+
+          this.router.navigateByUrl(redirect);
+        }
+      },
+      error => {
+        Swal.fire({
+          title: 'Oops!',
+          text: error,
+          type: 'error'
+        })
         console.log(error);
       }
-    );
+    )
   }
 }

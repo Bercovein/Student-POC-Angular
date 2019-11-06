@@ -2,7 +2,7 @@ import { Component, OnInit, ɵisDefaultChangeDetectionStrategy } from '@angular/
 
 import { Student } from 'src/app/models/student';
 import { StudentsService } from 'src/app/services/students.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import Swal from'sweetalert2';
 
@@ -19,23 +19,25 @@ export class EditStudentComponent implements OnInit {
 
   private student: Student = new Student();
 
-  constructor(private studentService : StudentsService, private route : ActivatedRoute) { }
+  constructor(private studentService : StudentsService, 
+    private activeRoute : ActivatedRoute,
+    private router : Router) { }
 
   ngOnInit() {
     this.studentService
-                  .getById(this.route.snapshot.paramMap.get('id'))
-                  .then(response=>{
-                    this.student = response;
-                  })
-                  .catch(error =>{
-                    Swal.fire(
-                      {
-                        title: 'Oops..',
-                        text: error,
-                        type: 'warning'
-                      }
-                    );
-                  });
+      .getById(this.activeRoute.snapshot.paramMap.get('id'))
+      .then(response=>{
+        this.student = response;
+      })
+      .catch(error =>{
+        Swal.fire(
+          {
+            title: 'Oops..',
+            text: error,
+            type: 'warning'
+          }
+        );
+      });
   }
 
   update(){
@@ -46,6 +48,7 @@ export class EditStudentComponent implements OnInit {
             text: response,
             type: 'success'
           })
+          this.router.navigate(['list']);
         })
         .catch(error =>{
             Swal.fire({
