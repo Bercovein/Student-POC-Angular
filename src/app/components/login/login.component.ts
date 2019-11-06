@@ -40,7 +40,11 @@ export class LoginComponent implements OnInit {
 
     this.userService.login(this.user).subscribe(
       response => {
+<<<<<<< HEAD
         if(localStorage.getItem('token')){
+=======
+        if(this.userService.token){
+>>>>>>> b486c53275b46893bb524ae0073c752225be2bc0
           let redirect = this.userService.redirectUrl
           ? this.router.parseUrl(this.userService.redirectUrl) : '/list';
           
@@ -60,6 +64,9 @@ export class LoginComponent implements OnInit {
           type: 'error'
         })
         console.log(error);
+      },
+      () =>{
+        console.log('Papá hicimos algo muy malo!')
       }
     )
   }

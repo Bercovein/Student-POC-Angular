@@ -14,11 +14,19 @@
 
   </div>
 
+<<<<<<< HEAD
   <div *ngIf="!isLogged">
     <a  class="nav-item nav-link" style="float:right" [routerLink]="['/login']" routerLinkActive="active">Login <span class="sr-only">(current)</span></a>
   </div>
   <div *ngIf="isLogged">
     <a href="" class="nav-item nav-link" style="float:right" (click)="logout()">Logout</a>
+=======
+  <div *ngIf="!this.userService.token">
+    <a  class="nav-item nav-link" style="float:right" [routerLink]="['/login']" routerLinkActive="active">Login <span class="sr-only">(current)</span></a>
+  </div>
+  <div *ngIf="this.userService.token">
+    <a  class="nav-item nav-link" style="float:right" (click)="logout()">Logout</a>
+>>>>>>> b486c53275b46893bb524ae0073c752225be2bc0
   </div>
 
   <div>

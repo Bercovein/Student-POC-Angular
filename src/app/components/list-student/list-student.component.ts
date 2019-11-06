@@ -46,15 +46,25 @@ export class ListStudentComponent implements OnInit {
       if(willDelete){
         this.studentService.delete(student)
         Swal.fire({
+<<<<<<< HEAD
           title: "Eliminado!",
           text: student.firstName + ' ' student.lastName, 
+=======
+          title: "Te la kreiste weh",
+          text: "Esta funcionalidad todavia no está implementada", 
+>>>>>>> b486c53275b46893bb524ae0073c752225be2bc0
           type: "success"
         });
       }
       else{
         Swal.fire({
+<<<<<<< HEAD
           title: "Fiuu..!",
           text: "Sus datos están a salvo",
+=======
+          title: "Te la kreiste weh",
+          text: "Esta funcionalidad todavia no está implementada",
+>>>>>>> b486c53275b46893bb524ae0073c752225be2bc0
           type: "success"
         });
       }
