@@ -8,9 +8,20 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-        <a  class="nav-item nav-link" [routerLink]="['/login']" routerLinkActive="active">Login <span class="sr-only">(current)</span></a>
       <a  class="nav-item nav-link" [routerLink]="['/list']" routerLinkActive="active">List <span class="sr-only">(current)</span></a>
       <a  class="nav-item nav-link" [routerLink]="['/add']" routerLinkActive="active">Add</a>
     </div>
+
+  </div>
+
+  <div *ngIf="!this.userService.token">
+    <a  class="nav-item nav-link" style="float:right" [routerLink]="['/login']" routerLinkActive="active">Login <span class="sr-only">(current)</span></a>
+  </div>
+  <div *ngIf="this.userService.token">
+    <a  class="nav-item nav-link" style="float:right" (click)="logout()">Logout</a>
+  </div>
+
+  <div>
+    
   </div>
 </nav>

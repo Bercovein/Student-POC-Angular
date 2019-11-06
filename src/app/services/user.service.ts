@@ -10,6 +10,9 @@ export class UserService {
   lin = 'login';
   sup = 'sign-up';
 
+  token = undefined;
+  redirectUrl : string;
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -18,12 +21,29 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  login(user : User): Promise <any>{
-    return this.http.post(this.path + this.lin,user,this.httpOptions).toPromise();
+  //OBSERVABLE
+  login(user : User){
+    
+    const observable = this.http.post(this.path + this.lin,user,this.httpOptions);
+    
+    observable.subscribe(
+      response => {
+        this.token = response['jwt'];
+        console.log(this.token);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+    return observable;
   }
 
+  logout():void{
+    this.token = undefined;
+  }
+
+  //PROMISE
   signup(user : User): Promise <any>{
     return this.http.post(this.path + this.sup,user,this.httpOptions).toPromise();
   }
-
 }

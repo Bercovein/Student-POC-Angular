@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { Student } from '../models/student';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class StudentsService extends Observable<any>{
+export class StudentsService{
 
   path = 'https://utn2019-avanzada2-tp8.herokuapp.com/api/';
   pathStudents = this.path + 'students/';
@@ -20,8 +19,7 @@ export class StudentsService extends Observable<any>{
     })
   };
 
-  constructor(private http: HttpClient, private service :Subject<any>) {
-    super();
+  constructor(private http: HttpClient) {
   }
 
   getAll() : Promise<any>{
@@ -32,8 +30,8 @@ export class StudentsService extends Observable<any>{
     return this.http.get(this.pathStudents + id).toPromise();
   }
 
-  add(student : Student) : Promise<any>{
-    return this.http.post(this.pathStudents,student,this.httpOptions).toPromise();
+  add(student : Student){ //hecho con observable
+    return this.http.post(this.pathStudents,student,this.httpOptions);
   }
 
   update(id:number, student : Student) : Promise<any>{
@@ -42,5 +40,9 @@ export class StudentsService extends Observable<any>{
 
   getCareers() : Promise<any>{
     return this.http.get(this.pathCareers).toPromise();
+  }
+
+  getCareerById(id : number) : Promise<any>{
+    return this.http.get(this.pathCareers + id).toPromise();
   }
 }

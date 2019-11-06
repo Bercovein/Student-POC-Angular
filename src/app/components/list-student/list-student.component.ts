@@ -19,9 +19,6 @@ export class ListStudentComponent implements OnInit {
   constructor(private studentService: StudentsService) { }
 
   ngOnInit() {
-    /*this.studentService.getAll()
-    .then(response => {this.students = response})
-    .catch(error => {console.log(error)});*/
     this.getAll();
   }
 
@@ -40,18 +37,23 @@ export class ListStudentComponent implements OnInit {
     Swal.fire({
       title: "Seguro que desea elimiar a..",
       text: student.firstName + ' ' + student.lastName + '?',
-      type: "warning"
+      type: "warning",
+      confirmButtonText: 'Eliminar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#d33'
     }).then((willDelete) =>{
       if(willDelete){
         Swal.fire({
           title: "Te la kreiste weh",
-          text: "Este boton no anda", 
+          text: "Esta funcionalidad todavia no está implementada", 
           type: "success"
         });
       }
       else{
         Swal.fire({
-          title: "Your imaginary file is safe!", 
+          title: "Te la kreiste weh",
+          text: "Esta funcionalidad todavia no está implementada",
           type: "success"
         });
       }
