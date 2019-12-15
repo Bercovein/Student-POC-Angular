@@ -13,15 +13,11 @@ export class NavbarComponent implements OnInit {
   constructor(private userService : UserService, private router : Router) { }
 
   ngOnInit() {
-<<<<<<< HEAD
 
   }
 
   isLogged(){
     return localStorage.getItem('token')? true: false;
-=======
-     let token = this.userService.token;
->>>>>>> b486c53275b46893bb524ae0073c752225be2bc0
   }
 
   logout(){
@@ -30,7 +26,6 @@ export class NavbarComponent implements OnInit {
     Swal.fire({
       title: 'Gracias!',
       text: 'Vuelvas Prontos!',
-<<<<<<< HEAD
       type: 'success',
       confirmButtonText: 'Bye Bye!'
     }).then((willDelete)=>{
@@ -38,11 +33,5 @@ export class NavbarComponent implements OnInit {
         this.router.navigate(['/login']);
       }
     })
-=======
-      type: 'success'
-    })
-
-    this.router.navigate(['/login']);
->>>>>>> b486c53275b46893bb524ae0073c752225be2bc0
   }
 }

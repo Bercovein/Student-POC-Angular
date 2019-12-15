@@ -32,13 +32,10 @@ export class StudentsService{
 
   add(student : Student){ //hecho con observable
     return this.http.post(this.pathStudents,student,this.httpOptions);
-<<<<<<< HEAD
   }
 
   delete(student : Student){
     return this.http.delete(this.pathStudents + student.studentId,this.httpOptions)
-=======
->>>>>>> b486c53275b46893bb524ae0073c752225be2bc0
   }
 
   update(id:number, student : Student) : Promise<any>{
@@ -52,9 +49,6 @@ export class StudentsService{
   getCareerById(id : number) : Promise<any>{
     return this.http.get(this.pathCareers + id).toPromise();
   }
-<<<<<<< HEAD
 
   
-=======
->>>>>>> b486c53275b46893bb524ae0073c752225be2bc0
 }

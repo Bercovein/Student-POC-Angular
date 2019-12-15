@@ -10,10 +10,6 @@ export class UserService {
   lin = 'login';
   sup = 'sign-up';
 
-<<<<<<< HEAD
-=======
-  token = undefined;
->>>>>>> b486c53275b46893bb524ae0073c752225be2bc0
   redirectUrl : string;
 
   httpOptions = {
@@ -31,13 +27,8 @@ export class UserService {
     
     observable.subscribe(
       response => {
-<<<<<<< HEAD
         let token = response['jwt'];
         localStorage.setItem('token',token)
-=======
-        this.token = response['jwt'];
-        console.log(this.token);
->>>>>>> b486c53275b46893bb524ae0073c752225be2bc0
       },
       error => {
         console.log(error);
@@ -47,19 +38,12 @@ export class UserService {
   }
 
   logout():void{
-<<<<<<< HEAD
     localStorage.removeItem('token')
   }
 
-  
-
-=======
-    this.token = undefined;
-  }
-
->>>>>>> b486c53275b46893bb524ae0073c752225be2bc0
   //PROMISE
   signup(user : User): Promise <any>{
     return this.http.post(this.path + this.sup,user,this.httpOptions).toPromise();
   }
+
 }
